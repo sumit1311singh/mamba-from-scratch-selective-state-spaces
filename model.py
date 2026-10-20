@@ -90,8 +90,23 @@ def discretize_a_zoh(delta, a):
     a_bar = torch.exp(delta_a)
     return a_bar
 
-# Step 9 - discretize_b_zoh (not yet solved)
-# TODO: implement
+# Step 9 - discretize_b_zoh
+def discretize_b_zoh(delta, a, b):
+    """Discretize B with the exact diagonal zero-order-hold formula.
+
+    Args:
+        delta: (batch, seq_len, d_inner) timesteps.
+        a: (d_inner, d_state) continuous diagonal A (strictly negative).
+        b: (batch, seq_len, d_state) continuous input-dependent B.
+
+    Returns:
+        b_bar: (batch, seq_len, d_inner, d_state) discrete B.
+    """
+    # TODO: Convert continuous B into discrete B_bar with the exact diagonal ZOH formula...
+    delta_a = delta.unsqueeze(-1) * a
+    exp_delta_a = torch.exp(delta_a)
+    b_bar = ((exp_delta_a-1)/a) * b.unsqueeze(2)
+    return b_bar
 
 # Step 10 - compare_euler_zoh_b (not yet solved)
 # TODO: implement
