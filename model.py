@@ -70,8 +70,11 @@ def project_bc(x, weight_b, weight_c):
     C_ssm = torch.nn.functional.linear(x, weight_c)
     return B_ssm, C_ssm
 
-# Step 7 - make_diagonal_a (not yet solved)
-# TODO: implement
+# Step 7 - make_diagonal_a
+def make_diagonal_a(log_a):
+    """Map unconstrained log-A of shape (E, N) to a strictly negative diagonal A."""
+    # TODO: Map unconstrained log-A of shape (E, N) to a strictly negative diagonal A....
+    return -torch.exp(log_a)
 
 # Step 8 - discretize_a_zoh (not yet solved)
 # TODO: implement
